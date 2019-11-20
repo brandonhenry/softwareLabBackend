@@ -1,11 +1,13 @@
 import {blockChain} from './Blockchain.js';
 import {Block} from './Blockchain.js';
+
 var express = require('express');
 var app = express();
 let podChain = new blockChain();
+let PORT = process.env.PORT || 3000;
 
 app.get('/', function(req, res){
-    res.send("Hello world!");
+    res.send("Welcome to the MSU Blockchain API!");
 });
 
 app.get('/purchase', function(req, res){
@@ -23,4 +25,4 @@ app.get('/searchDates', function(req, res){
     res.send(tempList)
 });
 
-app.listen(3000);
+app.listen(PORT);
