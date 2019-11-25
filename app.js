@@ -12,10 +12,10 @@ app.get('/', cors(), function(req, res){
     res.send("Welcome to the MSU Blockchain API!");
 });
 
-app.post('/purchase', cors(), function(req, res){
-    console.log(req);
-    podChain.addBlock(new Block(podChain.getLatestBlock().index + 1, Date(), req.body.price));
-    res.send(req.body);
+app.get('/purchase', cors(), function(req, res){
+    let price = req.url.substr(req.url.indexOf("=") + 1, req.url.length);
+    podChain.addBlock(new Block(podChain.getLatestBlock().index + 1, Date(), price));
+    res.send(podChain.getLatestBlock());
 });
 
 app.get('/searchID', cors(), function(req, res){
