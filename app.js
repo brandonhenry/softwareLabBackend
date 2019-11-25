@@ -19,12 +19,17 @@ app.get('/purchase', cors(), function(req, res){
 });
 
 app.get('/searchID', cors(), function(req, res){
-    const tempBlock = podChain.findID(req.body.userID);
+    let id = req.url.substr(req.url.indexOf("=") + 1, req.url.length);
+    const tempBlock = podChain.findID(id);
     res.send(tempBlock);
 });
 
 app.get('/searchDates', cors(), function(req, res){
-    const tempList = podChain.findDates(res.body.startDate, res.body.endDate);
+    let endDate = req.url.substr(req.url.indexOf("end") + 4, req.url.length);
+    let start = req.url.substr(req.url.indexOf("?") + 1, req.url.indexOf("&"));
+    console.log(endDate);
+    console.log(start);
+    const tempList = podChain.findDates("11/20/2019", "11/30/2019");
     res.send(tempList)
 });
 
